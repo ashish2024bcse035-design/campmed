@@ -1,0 +1,8 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // New workspace uses the authenticated Node + SQLite API.
+    // Deploy these rules only after retaining your old database backup.
+    match /{document=**} { allow read, write: if false; }
+  }
+}

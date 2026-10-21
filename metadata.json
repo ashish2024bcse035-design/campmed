@@ -1,0 +1,6 @@
+{
+  "name": "CampusMed - College Medical Unit & Dispensary System",
+  "description": "Comprehensive health record and medicine dispensation management system for college students, faculty, security guards, and staff with enrollment and branch search.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

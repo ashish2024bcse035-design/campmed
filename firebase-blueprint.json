@@ -1,0 +1,99 @@
+{
+  "entities": {
+    "Student": {
+      "title": "Student",
+      "description": "Enrolled student at the college",
+      "type": "object",
+      "properties": {
+        "enrollmentNo": { "type": "string", "description": "Student enrollment number e.g. 2024BCSE001" },
+        "name": { "type": "string", "description": "Full student name" },
+        "branch": { "type": "string", "description": "College branch or department e.g. Computer Science" },
+        "year": { "type": "string", "description": "Academic year e.g. 1st Year, 2nd Year" },
+        "phone": { "type": "string", "description": "Contact phone number" },
+        "createdAt": { "type": "string", "description": "ISO timestamp" }
+      },
+      "required": ["enrollmentNo", "name", "branch"]
+    },
+    "Staff": {
+      "title": "Staff",
+      "description": "College staff, guard, teacher, or technician",
+      "type": "object",
+      "properties": {
+        "employeeId": { "type": "string", "description": "Staff ID e.g. SEC-GD-018" },
+        "name": { "type": "string", "description": "Staff name" },
+        "branch": { "type": "string", "description": "Department or post e.g. Campus Security" },
+        "staffRole": { "type": "string", "description": "Role: guard, faculty, technical, maintenance" },
+        "designation": { "type": "string", "description": "Staff designation" },
+        "phone": { "type": "string", "description": "Contact phone number" },
+        "createdAt": { "type": "string", "description": "ISO timestamp" }
+      },
+      "required": ["employeeId", "name", "branch", "staffRole"]
+    },
+    "Visitor": {
+      "title": "Visitor",
+      "description": "External campus visitor, contractor, parent, or guest",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "description": "Visitor full name" },
+        "gender": { "type": "string", "description": "Gender: Male, Female, Other" },
+        "age": { "type": "number", "description": "Visitor age" },
+        "phone": { "type": "string", "description": "Contact number" },
+        "purpose": { "type": "string", "description": "Purpose of campus visit" },
+        "createdAt": { "type": "string", "description": "ISO timestamp" }
+      },
+      "required": ["name", "gender", "age"]
+    },
+    "Medicine": {
+      "title": "Medicine",
+      "description": "Infirmary medicine stock item",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "description": "Medicine formulation name" },
+        "stockQuantity": { "type": "number", "description": "Current quantity in units" },
+        "unit": { "type": "string", "description": "tablets, sachets, bottles, tubes, rolls" },
+        "minStockThreshold": { "type": "number", "description": "Minimum threshold for alert" }
+      },
+      "required": ["name", "stockQuantity", "unit"]
+    },
+    "Visit": {
+      "title": "Visit",
+      "description": "Clinical visit record with auto date-time and dispensed medicine",
+      "type": "object",
+      "properties": {
+        "patientId": { "type": "string", "description": "Patient identifier" },
+        "patientType": { "type": "string", "description": "student, staff, or visitor" },
+        "patientName": { "type": "string", "description": "Patient name" },
+        "identifier": { "type": "string", "description": "Enrollment No, Employee ID, or Visitor" },
+        "branch": { "type": "string", "description": "Branch or department" },
+        "dateTime": { "type": "string", "description": "ISO timestamp" },
+        "formattedDateTime": { "type": "string", "description": "Human readable date & time" },
+        "medicineId": { "type": "string", "description": "Medicine ID dispensed" },
+        "medicineName": { "type": "string", "description": "Medicine name dispensed" },
+        "quantity": { "type": "number", "description": "Quantity given" }
+      },
+      "required": ["patientId", "patientType", "patientName", "identifier", "dateTime", "medicineId", "medicineName", "quantity"]
+    }
+  },
+  "firestore": {
+    "/students/{studentId}": {
+      "schema": { "$ref": "#/entities/Student" },
+      "description": "Enrolled college students"
+    },
+    "/staff/{staffId}": {
+      "schema": { "$ref": "#/entities/Staff" },
+      "description": "College staff, guards, and faculty"
+    },
+    "/visitors/{visitorId}": {
+      "schema": { "$ref": "#/entities/Visitor" },
+      "description": "Campus visitors and guests"
+    },
+    "/medicines/{medicineId}": {
+      "schema": { "$ref": "#/entities/Medicine" },
+      "description": "Dispensary medicine stock items"
+    },
+    "/visits/{visitId}": {
+      "schema": { "$ref": "#/entities/Visit" },
+      "description": "Visit consultations and dispensed medicine logs"
+    }
+  }
+}
